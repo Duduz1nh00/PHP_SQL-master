@@ -12,6 +12,7 @@ services: # Serviços sendo executados
     environment:
       - MYSQL_DATABASE=decoracao
       - MYSQL_ROOT_PASSWORD=1234
+
   pphpmyadmin:  #2 - PHPMYADMIN
     image: phpmyadmin/phpmyadmin
     container_name: pma
