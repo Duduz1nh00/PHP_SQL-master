@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clientes</title>
+</head>
+<body>
+    <h1>Clientes</h1>
+    <?php
+    // Repita o processo de conexão aqui
+
+    $sql = "SELECT * FROM Clientes";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "<ul>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<li>{$row['Nome']}</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "Nenhum resultado encontrado.";
+    }
+
+    // Fechamento da conexão
+    mysqli_close($conn);
+    ?>
+</body>
+</html>
+
 <?php
 
 $connect = mysqli_connect(
