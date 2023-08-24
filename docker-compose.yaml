@@ -25,5 +25,17 @@ services: # Serviços sendo executados
     restart: always
     ports:
       - 8081:80
+      
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+
 volumes:
   db:
