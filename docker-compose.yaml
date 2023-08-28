@@ -31,6 +31,8 @@ services: # Serviços sendo executados
       context: .
       dockerfile: Dockerfile
     container_name: app
+    volumes:
+      - ./app:/var/www/html/
     restart: unless-stopped
     ports:
       - 8080:80
@@ -39,3 +41,4 @@ services: # Serviços sendo executados
 
 volumes:
   db:
+  app:
