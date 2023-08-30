@@ -1,31 +1,34 @@
 <?php
-$servername = "db";      // Nome do serviço do banco de dados definido no docker-compose.yml
-$username = "root";      // Usuário do banco de dados
-$password = "1234";      // Senha do banco de dados
-$dbname = "decoracao";   // Nome do banco de dados
 
-// Cria a conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once '../classes/autoloader.php';
+require_once 'Conecao.php';
 
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("Erro na conexão: " . $conn->connect_error);
-}
+$dbConnection = $conn;
+$fornecedor = new Fornecedor($dbConnection);
 
-echo "Conexão ao banco de dados estabelecida com sucesso";
+$fornecedores = $fornecedor->getAllFornecedores();
 
-// Executa uma consulta de seleção
-$sql = "SELECT * FROM Clientes";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "ID: <br>" . $row["IDCliente"]. " - Nome: " . $row["Nome"]. "<br>";
+if (!empty($fornecedores)) {
+    foreach ($fornecedores as $fornecedorInfo) {
+        echo "Nome Fantasia: " . $fornecedorInfo['Nome_Fantasia'] . "<br>";
+        echo "Item: " . $fornecedorInfo['Item'] . "<br>";
+        echo "Email: " . $fornecedorInfo['Email'] . "<br><br>";
     }
 } else {
-    echo "0 resultados";
+    echo "Nenhum fornecedor encontrado.";
 }
 
-// Fecha a conexão
-$conn->close();
-?>
+/*if (!empty($fornecedores)) {:
+
+Este trecho de código verifica se a variável $fornecedores não está vazia antes de prosseguir com o loop foreach. 
+A função empty() verifica se uma variável está vazia ou não. Se a variável $fornecedores não estiver vazia 
+(ou seja, houver fornecedores retornados), o bloco de código dentro do if será executado.
+
+foreach ($fornecedores as $fornecedorInfo) {:
+
+Este é um loop foreach que percorre cada item no array $fornecedores. 
+O array $fornecedores é o resultado retornado pelo método getAllFornecedores da classe Fornecedor. 
+Cada item no array corresponde a um fornecedor, e essas informações são armazenadas em $fornecedorInfo a cada iteração do loop.
+
+Durante cada iteração do loop, você pode acessar os campos do fornecedor (como 'IDFornecedor', 'Nome_Fantasia', etc.) 
+usando a variável $fornecedorInfo, que contém um array associativo com os detalhes do fornecedor.*/

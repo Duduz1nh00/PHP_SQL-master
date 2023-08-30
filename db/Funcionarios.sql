@@ -2,7 +2,7 @@ CREATE TABLE Funcionarios(
 	IDFuncionarios int primary key auto_increment,
 	Nome varchar(100),
 	Salario int,
-	Dt_admissão date
+	Dt_admissão date not null
 );
 
 CREATE TABLE Clientes(
@@ -11,15 +11,15 @@ CREATE TABLE Clientes(
 );
 
 CREATE TABLE Ctt_Cli(
-	ID_Cliente int, #FK
+	ID_Cliente int unique, #FK
 	
-	Numero int(11)
+	Numero varchar(11)
 );
 
 CREATE TABLE Ctt_Func(
-	ID_Funcionario int, #FK
+	ID_Funcionario int unique, #FK
 	
-	Numero int(11)
+	Numero varchar(11)
 );
 
 
@@ -27,7 +27,7 @@ CREATE TABLE Fornecedores(
 	IDFornecedor int  primary key auto_increment,
 	Nome_Fantasia varchar (100),
 	Item set('Brin', 'Deco'),
-	Email varchar(50)
+	Email varchar(50) not null
 );
 
 CREATE TABLE Endereco_Cli(

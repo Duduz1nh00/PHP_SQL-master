@@ -36,6 +36,9 @@ services: # Serviços sendo executados
       - 8080:80
     depends_on:
       - db
-
+    volumes:
+      - ./app:/var/www/html
+      - ./classes:/var/www/classes
+      
 volumes:
   db:
