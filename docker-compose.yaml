@@ -38,7 +38,7 @@ services: # Serviços sendo executados
       - db
     volumes:
       - ./app:/var/www/html
-      - ./classes:/var/www/classes
+      - ./src:/var/www/src
       
 volumes:
   db:

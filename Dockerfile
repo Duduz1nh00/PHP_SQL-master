@@ -2,10 +2,10 @@
 FROM php:8.2-apache
 
 # Copie o conteudo da pasta app para o diretório do servidor web
-COPY ./app/ /var/www/html/
+COPY app/ /var/www/html/
 
-# Copie o conteudo da pasta classes para o diretório do servidor web
-COPY ./src/ /var/www/classes/
+# Copie o conteudo da pasta src para o diretório do servidor web
+COPY src/ /var/www/src/
 
 # Instale a extensão MySQLi no PHP
 RUN docker-php-ext-install mysqli

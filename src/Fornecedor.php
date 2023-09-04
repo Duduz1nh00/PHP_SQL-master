@@ -1,5 +1,7 @@
 <?php
 
+
+
 class Fornecedor {
     private $conn;
 
@@ -12,16 +14,11 @@ class Fornecedor {
         $result = $this->conn->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-
-    public function getFornecedorInfo($fornecedorID) {
-        $query = "SELECT * FROM Fornecedores WHERE IDFornecedor = $fornecedorID";
-        $result = $this->conn->query($query);
-        return $result->fetch_assoc();
-    }
     
-    public function getEndereco($clienteID) {
-        $query = "SELECT Rua, Numero, Bairro, Cidade, Estado FROM Endereco_Cli WHERE ID_Cliente = $clienteID";
+    public function getEndereco($FornecedorID) {
+        $query = "SELECT Rua, Numero, Bairro, Cidade, Estado FROM Endereco_Forn WHERE ID_Fornecedor = $FornecedorID";
         $result = $this->conn->query($query);
         return $result->fetch_assoc();
     }
+
 }

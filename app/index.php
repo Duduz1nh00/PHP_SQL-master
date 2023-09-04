@@ -1,6 +1,6 @@
 <?php
 
-require_once '../classes/autoloader.php';
+require_once '../src/autoloader.php';
 require_once 'Conecao.php';
 
 $dbConnection = $conn;
@@ -12,7 +12,18 @@ if (!empty($fornecedores)) {
     foreach ($fornecedores as $fornecedorInfo) {
         echo "Nome Fantasia: " . $fornecedorInfo['Nome_Fantasia'] . "<br>";
         echo "Item: " . $fornecedorInfo['Item'] . "<br>";
-        echo "Email: " . $fornecedorInfo['Email'] . "<br><br>";
+        echo "Email: " . $fornecedorInfo['email'] . "<br>";
+
+        $fornecedorID = $fornecedorInfo['IDFornecedor'];
+        $endereco = $fornecedor->getEndereco($fornecedorID);
+
+        if ($endereco) {
+            echo "Endereço: " . $endereco['Rua'] . ", " . $endereco['Numero'] . ", " . $endereco['Bairro'] . ", " . $endereco['Cidade'] . ", " . $endereco['Estado'] . "<br>";
+        } else {
+            echo "Endereço não encontrado para este fornecedor.<br>";
+        }
+
+        echo "<br>"; // Adicione uma quebra de linha entre os fornecedores
     }
 } else {
     echo "Nenhum fornecedor encontrado.";
