@@ -1,33 +1,34 @@
 <?php
 
-require_once '../src/autoloader.php';
-require_once 'Conecao.php';
 
+require_once 'Conexao.php';
+require_once '../src/Fornecedor.php';
+require_once 'Controller/FornecedorController.php';
+
+
+// Use os namespaces para criar instâncias das classes
+use App\Controller\FornecedorController;
+use Src\Fornecedor;
+
+
+// Crie uma instância do controlador e da classe Fornecedor
 $dbConnection = $conn;
 $fornecedor = new Fornecedor($dbConnection);
 
-$fornecedores = $fornecedor->getAllFornecedores();
 
-if (!empty($fornecedores)) {
-    foreach ($fornecedores as $fornecedorInfo) {
-        echo "Nome Fantasia: " . $fornecedorInfo['Nome_Fantasia'] . "<br>";
-        echo "Item: " . $fornecedorInfo['Item'] . "<br>";
-        echo "Email: " . $fornecedorInfo['email'] . "<br>";
+$dbConnection = $conn;
+$controller = new FornecedorController($dbConnection, $fornecedor);
 
-        $fornecedorID = $fornecedorInfo['IDFornecedor'];
-        $endereco = $fornecedor->getEndereco($fornecedorID);
+// Agora você pode chamar métodos e usar as classes como desejar
+$fornecedores = $controller->getAllFornecedores();
+$controller->displayFornecedores($fornecedores);
 
-        if ($endereco) {
-            echo "Endereço: " . $endereco['Rua'] . ", " . $endereco['Numero'] . ", " . $endereco['Bairro'] . ", " . $endereco['Cidade'] . ", " . $endereco['Estado'] . "<br>";
-        } else {
-            echo "Endereço não encontrado para este fornecedor.<br>";
-        }
 
-        echo "<br>"; // Adicione uma quebra de linha entre os fornecedores
-    }
-} else {
-    echo "Nenhum fornecedor encontrado.";
-}
+
+
+
+
+
 
 /*if (!empty($fornecedores)) {:
 

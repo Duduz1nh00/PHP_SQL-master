@@ -1,11 +1,20 @@
 # Use a imagem base PHP com Apache4
 FROM php:8.2-apache
 
+# Copie o arquivo de configuração personalizado para o diretório de configuração do Apache
+COPY apache-config.conf /etc/apache2/conf-available/
+
+# Ative o arquivo de configuração personalizado
+RUN a2enconf apache-config
+
+# Defina o diretório de trabalho como /var/www/html
+WORKDIR /var/www/html
+
 # Copie o conteudo da pasta app para o diretório do servidor web
-COPY app/ /var/www/html/
+COPY app/ .
 
 # Copie o conteudo da pasta src para o diretório do servidor web
-COPY src/ /var/www/src/
+COPY src/ .
 
 # Instale a extensão MySQLi no PHP
 RUN docker-php-ext-install mysqli

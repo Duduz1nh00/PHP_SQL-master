@@ -1,5 +1,8 @@
 <?php
 
+namespace Src;
+
+
 class Cliente {
     private $conn;
     

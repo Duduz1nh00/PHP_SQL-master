@@ -1,5 +1,7 @@
 <?php
 
+namespace Src;
+
 class Funcionario {
     private $conn;
 
