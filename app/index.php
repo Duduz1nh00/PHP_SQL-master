@@ -2,28 +2,20 @@
 
 
 require_once 'Conexao.php';
+require_once '../src/Cliente.php';
 require_once '../src/Fornecedor.php';
-require_once 'Controller/FornecedorController.php';
+require_once '../src/Funcionario.php';
+require_once 'Controller/ClienteController.php';
+require_once 'Controller/FuncionarioController.php';
+
 
 
 // Use os namespaces para criar instâncias das classes
+
+use App\Controller\ClienteController;
 use App\Controller\FornecedorController;
+use Src\Cliente;
 use Src\Fornecedor;
-
-
-// Crie uma instância do controlador e da classe Fornecedor
-$dbConnection = $conn;
-$fornecedor = new Fornecedor($dbConnection);
-
-
-$dbConnection = $conn;
-$controller = new FornecedorController($dbConnection, $fornecedor);
-
-// Agora você pode chamar métodos e usar as classes como desejar
-$fornecedores = $controller->getAllFornecedores();
-$controller->displayFornecedores($fornecedores);
-
-
 
 
 

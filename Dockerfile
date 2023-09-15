@@ -16,8 +16,14 @@ COPY app/ .
 # Copie o conteudo da pasta src para o diretório do servidor web
 COPY src/ .
 
+# Copie o conteudo da pasta public para o diretório do servidor web
+COPY public/ .
+
 # Instale a extensão MySQLi no PHP
 RUN docker-php-ext-install mysqli
+
+# Att do apache
+RUN apt-get update && apt-get install -y apache2
 
 # Exponha a porta 80 para o servidor web
 EXPOSE 80
