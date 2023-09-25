@@ -16,9 +16,6 @@ COPY app/ .
 # Copie o conteudo da pasta src para o diretório do servidor web
 COPY src/ .
 
-# Copie o conteudo da pasta public para o diretório do servidor web
-COPY public/ .
-
 # Instale a extensão MySQLi no PHP
 RUN docker-php-ext-install mysqli
 

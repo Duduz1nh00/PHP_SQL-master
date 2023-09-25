@@ -39,7 +39,6 @@ services: # Serviços sendo executados
     volumes:
       - ./app:/var/www/html
       - ./src:/var/www/src
-      - ./public:/var/www/html/public
       - ./apache-config.conf:/etc/apache2/conf-available/apache-config.conf
       
 volumes:
