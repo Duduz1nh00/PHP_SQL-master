@@ -18,7 +18,11 @@ class Fornecedor {
     public function getEndereco($FornecedorID) {
         $query = "SELECT Rua, Numero, Bairro, Cidade, Estado FROM Endereco_Forn WHERE ID_Fornecedor = $FornecedorID";
         $result = $this->conn->query($query);
-        return $result->fetch_assoc();
+    
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null; // Retorna null se nenhum endereço for encontrado
+        }
     }
-
-}
+}    

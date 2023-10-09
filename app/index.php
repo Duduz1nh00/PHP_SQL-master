@@ -1,45 +1,35 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selecionar Fornecedor</title>
+</head>
+<body>
+    <h1>Selecionar Fornecedor</h1>
 
-require_once '../src/autoloader.php';
-require_once 'Conecao.php';
+    <form action="processar.php" method="post">
+        <label for="fornecedor">Selecione um Fornecedor:</label>
+        <select name="fornecedor" id="fornecedor">
+            <?php
+            require_once '../src/autoloader.php';
+            require_once 'Conecao.php';
 
-$dbConnection = $conn;
-$fornecedor = new Fornecedor($dbConnection);
+            $dbConnection = $conn;
+            $fornecedor = new Fornecedor($dbConnection);
 
-$fornecedores = $fornecedor->getAllFornecedores();
+            $fornecedores = $fornecedor->getAllFornecedores();
 
-if (!empty($fornecedores)) {
-    foreach ($fornecedores as $fornecedorInfo) {
-        echo "Nome Fantasia: " . $fornecedorInfo['Nome_Fantasia'] . "<br>";
-        echo "Item: " . $fornecedorInfo['Item'] . "<br>";
-        echo "Email: " . $fornecedorInfo['email'] . "<br>";
-
-        $fornecedorID = $fornecedorInfo['IDFornecedor'];
-        $endereco = $fornecedor->getEndereco($fornecedorID);
-
-        if ($endereco) {
-            echo "Endereço: " . $endereco['Rua'] . ", " . $endereco['Numero'] . ", " . $endereco['Bairro'] . ", " . $endereco['Cidade'] . ", " . $endereco['Estado'] . "<br>";
-        } else {
-            echo "Endereço não encontrado para este fornecedor.<br>";
-        }
-
-        echo "<br>"; // Adicione uma quebra de linha entre os fornecedores
-    }
-} else {
-    echo "Nenhum fornecedor encontrado.";
-}
-
-/*if (!empty($fornecedores)) {:
-
-Este trecho de código verifica se a variável $fornecedores não está vazia antes de prosseguir com o loop foreach. 
-A função empty() verifica se uma variável está vazia ou não. Se a variável $fornecedores não estiver vazia 
-(ou seja, houver fornecedores retornados), o bloco de código dentro do if será executado.
-
-foreach ($fornecedores as $fornecedorInfo) {:
-
-Este é um loop foreach que percorre cada item no array $fornecedores. 
-O array $fornecedores é o resultado retornado pelo método getAllFornecedores da classe Fornecedor. 
-Cada item no array corresponde a um fornecedor, e essas informações são armazenadas em $fornecedorInfo a cada iteração do loop.
-
-Durante cada iteração do loop, você pode acessar os campos do fornecedor (como 'IDFornecedor', 'Nome_Fantasia', etc.) 
-usando a variável $fornecedorInfo, que contém um array associativo com os detalhes do fornecedor.*/
+            if (!empty($fornecedores)) {
+                foreach ($fornecedores as $fornecedorInfo) {
+                    $fornecedorID = $fornecedorInfo['IDFornecedor'];
+                    $nomeFantasia = $fornecedorInfo['Nome_Fantasia'];
+                    echo "<option value=\"$fornecedorID\">$nomeFantasia</option>";
+                }
+            } else {
+                echo "<option value=\"\">Nenhum fornecedor encontrado</option>";
+            }
+            ?>
+        </select>
+        <input type="submit" value="Selecionar">
+    </form>
+</body>
+</html>
