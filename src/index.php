@@ -30,10 +30,7 @@
 </head>
 <body>
     <header>
-        <a href="home.php">Home</a>
-        <a href="ClienteController.php">Cliente</a>
-        <a href="FuncionarioController.php">Funcionário</a>
-        <a href="FornecedorController.php">Fornecedor</a>
+        
     </header>
     <section>
         <h1>Bem-vindo à Página Inicial</h1>
