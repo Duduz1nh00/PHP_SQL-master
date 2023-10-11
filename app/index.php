@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Selecionar Fornecedor</title>
+    <title>Selecione uma Opção</title>
+    <style type="text/css">
+        /* Estilize a barra de navegação */
+        ul.navbar {
+            list-style: none;
+            padding: 0;
+            background-color: #069;
+            overflow: hidden;
+            margin-left: 7px;
+        }
+
+        li.nav-item {
+            display: inline;
+            margin-right: 220px; /* Aumente a margem para 40px para aumentar a distância entre os menus */
+        }
+
+        li.nav-item a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Selecionar Fornecedor</h1>
+    <h1>M Produções</h1>
 
-    <form action="processar.php" method="post">
-        <label for="fornecedor">Selecione um Fornecedor:</label>
-        <select name="fornecedor" id="fornecedor">
-            <?php
-            require_once '../src/autoloader.php';
-            require_once 'Conecao.php';
-
-            $dbConnection = $conn;
-            $fornecedor = new Fornecedor($dbConnection);
-
-            $fornecedores = $fornecedor->getAllFornecedores();
-
-            if (!empty($fornecedores)) {
-                foreach ($fornecedores as $fornecedorInfo) {
-                    $fornecedorID = $fornecedorInfo['IDFornecedor'];
-                    $nomeFantasia = $fornecedorInfo['Nome_Fantasia'];
-                    echo "<option value=\"$fornecedorID\">$nomeFantasia</option>";
-                }
-            } else {
-                echo "<option value=\"\">Nenhum fornecedor encontrado</option>";
-            }
-            ?>
-        </select>
-        <input type="submit" value="Selecionar">
-    </form>
+    <ul class="navbar">
+        <li class="nav-item"><a href="indexCliente.php">Sonhos realizados</a></li>
+        <li class="nav-item"><a href="indexFornecedor.php">Princípio do sonho</a></li>
+    </ul>
 </body>
 </html>
