@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Selecionar Cliente</title>
+    <title>Selecionar Funcionário</title>
     <style type="text/css">
         /* Estilize o menu suspenso horizontal */
         ul {
@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <h1>Selecionar Cliente</h1>
+    <h1>Selecionar Funcionário</h1>
 
     <ul>
         <?php
@@ -33,22 +33,19 @@
         require_once 'Conecao.php';
 
         $dbConnection = $conn;
-        $cliente = new Cliente($dbConnection);
+        $funcionario = new Funcionario($dbConnection);
 
-        $clientes = $cliente->getAllClientes();
+        $funcionarios = $funcionario->getAllFuncionarios();
 
-        if (!empty($clientes)) {
-            foreach ($clientes as $clienteInfo) {
-                $clienteID = $clienteInfo['IDCliente'];
-                $nomeCliente = $clienteInfo['Nome'];
-                echo "<li><a href=\"processarCliente.php?cliente=$clienteID\">$nomeCliente</a></li>";
+        if (!empty($funcionarios)) {
+            foreach ($funcionarios as $funcionarioInfo) {
+                $nomeFuncionario = $funcionarioInfo['Nome'];
+                echo "<li><a href=\"processarFuncionario.php?funcionario=" . urlencode($nomeFuncionario) . "\">$nomeFuncionario</a></li>";
             }
         } else {
-            echo "<li>Nenhum cliente encontrado</li>";
+            echo "<li>Nenhum funcionário encontrado</li>";
         }
         ?>
     </ul>
-    <form action="processarCliente.php" method="get">
-    </form>
 </body>
 </html>

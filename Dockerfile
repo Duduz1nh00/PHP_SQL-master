@@ -7,6 +7,8 @@ COPY app/ /var/www/html/
 # Copie o conteudo da pasta src para o diretório do servidor web
 COPY src/ /var/www/src/
 
+COPY css/ /var/www/html/css/
+
 # Instale a extensão MySQLi no PHP
 RUN docker-php-ext-install mysqli
 

@@ -8,9 +8,16 @@ class Funcionario {
     }
 
     public function getAllFuncionarios() {
-        $query = "SELECT * FROM Funcionarios";
+        $query = "SELECT Nome, Telefone FROM Funcionarios";
         $result = $this->conn->query($query);
-        return $result->fetch_all(MYSQLI_ASSOC);
+        
+        // Verifique se a consulta foi bem-sucedida
+        if ($result) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return array(); // Retorna um array vazio em caso de erro
+        }
     }
+    
 
 }

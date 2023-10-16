@@ -20,9 +20,9 @@ class Cliente {
     }
 
     public function getTelefone($clienteID) {
-        $query = "SELECT Numero FROM Ctt_Cli WHERE ID_Cliente = $clienteID";
+        $query = "SELECT Telefone FROM Ctt_Cli WHERE ID_Cliente = $clienteID";
         $result = $this->conn->query($query);
         $row = $result->fetch_assoc();
-        return $row['Numero'];
+        return $row['Telefone'];
     }
 }
